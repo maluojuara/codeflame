@@ -8,11 +8,13 @@ async function getStreak(){
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
-		const today = new Date().toISOString();
-		let studyToday = false;
+		const today = new Date().toISOString().split("T")[0];
+		console.log(data);
 		
 		data.forEach(element => {
-			if (element.type === 'PushEvent' && element.created_at === today){
+			
+			// const elementDate = element.created_at.split("T")[0];
+			if (element.type === 'PushEvent' && elementDate === today){
 				streak++;
 			}
 		});
